@@ -12,9 +12,9 @@ pipeline {
             steps {
                 script {
                     if (isUnix()) {
-                        sh 'docker build -t omramani/dockerpipeline .'
+                        sh 'docker build -t om98245/dockerpipeline .'
                     } else {
-                        bat 'docker build -t omramani/dockerpipeline .'
+                        bat 'docker build -t om98245/dockerpipeline .'
                     }
                 }
             }
@@ -23,17 +23,17 @@ pipeline {
         stage('Docker Push') {
             steps {
                 script {
-                    // Replace 'YOUR_DOCKERHUB_USERNAME' and 'YOUR_DOCKERHUB_PASSWORD' with your actual credentials
+                    // Directly using username and password for Docker login
                     def username = 'om98245'
-                    def password = 'om@982457'
+                    def password = 'your_actual_password_here' // Replace with your actual Docker Hub password
 
                     if (isUnix()) {
                         sh "echo ${password} | docker login -u ${username} --password-stdin"
-                        sh 'docker push omramani/dockerpipeline'
+                        sh 'docker push om98245/dockerpipeline'
                         sh 'docker logout'
                     } else {
-                        bat "echo ${password} | docker login -u ${username} --password-stdin"
-                        bat 'docker push omramani/dockerpipeline'
+                        bat "echo %password% | docker login -u %username% --password-stdin"
+                        bat 'docker push om98245/dockerpipeline'
                         bat 'docker logout'
                     }
                 }
@@ -41,4 +41,3 @@ pipeline {
         }
     }
 }
-
