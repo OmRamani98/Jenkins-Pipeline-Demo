@@ -1,7 +1,9 @@
-FROM openjdk:11-jre-slim
+FROM openjdk:11-jdk-slim
 
-WORKDIR /usr/src/app
+WORKDIR /app
 
-COPY HelloWorld.class .
+COPY HelloWorld.java .
+
+RUN javac HelloWorld.java
 
 CMD ["java", "HelloWorld"]
