@@ -32,7 +32,7 @@ pipeline {
                         sh 'docker push omramani/dockerpipeline'
                         sh 'docker logout'
                     } else {
-                        bat "echo %password% | docker login -u %username% --password-stdin"
+                        bat "echo ${password} | docker login -u ${username} --password-stdin"
                         bat 'docker push omramani/dockerpipeline'
                         bat 'docker logout'
                     }
@@ -41,3 +41,4 @@ pipeline {
         }
     }
 }
+
