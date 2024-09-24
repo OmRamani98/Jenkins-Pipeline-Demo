@@ -27,11 +27,11 @@ pipeline {
                                                   usernameVariable: 'DOCKERHUB_USERNAME')]) {
                     script {
                         if (isUnix()) {
-                            sh 'docker login -u $DOCKERHUB_USERNAME -p $DOCKERHUB_PASSWORD'
+                            sh 'echo $DOCKERHUB_PASSWORD | docker login -u $DOCKERHUB_USERNAME --password-stdin'
                             sh 'docker push omramani/dockerpipeline'
                             sh 'docker logout'
                         } else {
-                            bat 'docker login -u %DOCKERHUB_USERNAME% -p %DOCKERHUB_PASSWORD%'
+                            bat 'echo %DOCKERHUB_PASSWORD% | docker login -u %DOCKERHUB_USERNAME% --password-stdin'
                             bat 'docker push omramani/dockerpipeline'
                             bat 'docker logout'
                         }
