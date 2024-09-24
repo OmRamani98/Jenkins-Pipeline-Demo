@@ -22,19 +22,19 @@ pipeline {
 
         stage('Docker Push') {
             steps {
-                withCredentials([usernamePassword(credentialsId: 'dockerhub', 
-                                                  passwordVariable: 'DOCKERHUB_PASSWORD', 
-                                                  usernameVariable: 'DOCKERHUB_USERNAME')]) {
-                    script {
-                        if (isUnix()) {
-                            sh 'echo $DOCKERHUB_PASSWORD | docker login -u $DOCKERHUB_USERNAME --password-stdin'
-                            sh 'docker push omramani/dockerpipeline'
-                            sh 'docker logout'
-                        } else {
-                            bat 'echo %DOCKERHUB_PASSWORD% | docker login -u %DOCKERHUB_USERNAME% --password-stdin'
-                            bat 'docker push omramani/dockerpipeline'
-                            bat 'docker logout'
-                        }
+                script {
+                    // Replace 'YOUR_DOCKERHUB_USERNAME' and 'YOUR_DOCKERHUB_PASSWORD' with your actual credentials
+                    def username = 'om98245'
+                    def password = 'om@982457'
+
+                    if (isUnix()) {
+                        sh "echo ${password} | docker login -u ${username} --password-stdin"
+                        sh 'docker push omramani/dockerpipeline'
+                        sh 'docker logout'
+                    } else {
+                        bat "echo %password% | docker login -u %username% --password-stdin"
+                        bat 'docker push omramani/dockerpipeline'
+                        bat 'docker logout'
                     }
                 }
             }
