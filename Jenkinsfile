@@ -4,10 +4,7 @@ pipeline {
     stages {
         stage("Checkout") {
             steps {
-                checkout scmGit(branches: [[name: '*/main']], 
-                                extensions: [], 
-                                userRemoteConfigs: [[credentialsId: 'github', 
-                                                     url: 'https://github.com/OmRamani98/Jenkins-Pipeline-Demo']])
+                git branch: 'main', url: 'https://github.com/OmRamani98/Jenkins-Pipeline-Demo'
             }
         }
 
