@@ -25,7 +25,7 @@ pipeline {
                 script {
                     // Directly using username and password for Docker login
                     def username = 'om98245'
-                    def password = 'your_actual_password_here' // Replace with your actual Docker Hub password
+                    def password = 'om@982457' // Replace with your actual Docker Hub password
 
                     if (isUnix()) {
                         sh "echo ${password} | docker login -u ${username} --password-stdin"
